@@ -36,14 +36,51 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+size(X);
+size(theta);
+size(y);
+size(lambda);
+size(grad);
+% X = 5x4 
+% Theta = 4x1
+% y = 5x1
+% grad = 4x1
+% Lambda = 1x1
 
+prediction = (@sigmoid(X*theta)); % 5x1
+% Exclude the first theta value
+theta1 = [0; theta(2:size(theta),:)];
+% Calculate the cost function without theta0
+J = (1/m)*sum((-y .* log(prediction)) - ((1-y) .* log(1-prediction))) + ((lambda/(2*m)) * sum(theta1.^2));
 
+% Loop
+%for i = 1:size(theta)
+%  if i == 1
+%     grad(i) = (1/m) * sum((prediction-y) .* X(:,i));
+%  else 
+%     grad(i) = ((1/m) * sum((prediction-y) .* X(:,i))) + ((lambda/m)*theta(i));
+%  end
+%end
 
+% Vectorized
 
+% theta1 ==> 4x1
+% theta1' ==> 1x4
+% theta1' x theta1 ==> 1x1 ==> goal is one number
+% Create the penalty term
+p = lambda*(theta1'*theta1)/(2*m);
 
+% y' = 1x5
+% y' * log(prediction) ==> 1x1
+% By taking the inverse of y, we get one value for J
+J = ((-y)'*log(prediction) - (1-y)'*log(1-prediction))/m + p;
 
-
-
+% Gradients
+% grad = 4x1
+% X' ==> 4x5
+% X' * (prediction-y); 4x5 X 5x1 ==> 4x1
+% lambda * theta1; 1 X 4x1 ==> 4x1
+grad = (X'*(prediction - y)+lambda*theta1)/m;
 
 % =============================================================
 
