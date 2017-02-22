@@ -50,17 +50,6 @@ size(grad);
 prediction = (@sigmoid(X*theta)); % 5x1
 % Exclude the first theta value
 theta1 = [0; theta(2:size(theta),:)];
-% Calculate the cost function without theta0
-J = (1/m)*sum((-y .* log(prediction)) - ((1-y) .* log(1-prediction))) + ((lambda/(2*m)) * sum(theta1.^2));
-
-% Loop
-%for i = 1:size(theta)
-%  if i == 1
-%     grad(i) = (1/m) * sum((prediction-y) .* X(:,i));
-%  else 
-%     grad(i) = ((1/m) * sum((prediction-y) .* X(:,i))) + ((lambda/m)*theta(i));
-%  end
-%end
 
 % Vectorized
 

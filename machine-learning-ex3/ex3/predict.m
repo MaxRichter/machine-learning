@@ -21,13 +21,27 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Theta1 - 25x401
+% Theta2 - 10x26
+% m = 5000
+% num_labels = 10
+% p = 5000x1
+% X = 5000x400
 
+% Add ones to the first column of data matrix X
+a1 = [ones(m, 1) X]; % 5000x401
 
+% Calculate the hidden layer
+z2 = a1 * Theta1'; % 5000x25
+% Add ones to the hidden layer in the first column
+a2 = [ones(size(z2, 1), 1) @sigmoid(z2)]; % 5000x26
 
+% Calculate the out layer
+z3 = a2 * Theta2'; % 5000x10 
+a3 = @sigmoid(z3); % 5000x10
 
-
-
-
+% Get the maximum value and index for each row
+[p_max, p] = max(a3, [], 2);
 
 % =========================================================================
 
