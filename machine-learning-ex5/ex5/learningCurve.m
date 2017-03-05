@@ -53,11 +53,26 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+% X = 12x2
+% y = 12x1
+% Xval = 21x2
+% yval = 21x1
+% lamda = 0
+% error_train = error_val = 12x1
 
+% We add training examples on every loop to see how the model behaves with more training examples
+for i = 1:m
+  % for each training step, the training set must contains 1 to m 
+	Xtrain = X(1:i,:);
+	ytrain = y(1:i);
 
-
-
-
+  [theta] = @trainLinearReg(Xtrain, ytrain, lambda);
+  % Set lambda to 0 as train and validate error function do not use regularization
+  [Jtrain, gradtrain] = @linearRegCostFunction(Xtrain, ytrain, theta, 0);
+  [Jval, gradval] = @linearRegCostFunction(Xval, yval, theta, 0);
+  error_train(i) = Jtrain;
+  error_val(i) = Jval;
+end
 
 % -------------------------------------------------------------
 

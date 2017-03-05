@@ -15,10 +15,14 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+% X = 12x1
+% p = 1x1 (8)
+% X_poly = 12x8
 
-
-
-
+% Apply the extra column per loop to every row (:,i)
+for i=1:p,
+	X_poly(:,i) = X(:,1).^i;
+end
 
 % =========================================================================
 
