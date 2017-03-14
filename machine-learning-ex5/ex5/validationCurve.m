@@ -39,14 +39,25 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+% X = 12x9
+% y = 12x1
+% Xval = 21x9
+% yval = 21x1
+% lambda_vec = 10x1
+% error_train = 10x1
+% error_val = 10x1
 
-
-
-
-
-
-
-
+for i = 1:length(lambda_vec)
+  lambda = lambda_vec(i);
+  % Compute thetas 
+  [theta] = @trainLinearReg(X, y, lambda);
+  % Compute train / val errors
+   % Set lambda to 0 as train and validate error function do not use regularization
+  [Jtrain, gradtrain] = @linearRegCostFunction(X, y, theta, 0);
+  [Jval, gradval] = @linearRegCostFunction(Xval, yval, theta, 0);
+  error_train(i) = Jtrain;
+  error_val(i) = Jval;
+end
 
 % =========================================================================
 
