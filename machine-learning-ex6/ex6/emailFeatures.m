@@ -48,12 +48,11 @@ x = zeros(n, 1);
 %
 %
 
+% x = 1899x1
+% word_indices = 53x1
 
-
-
-
-
-
+% Simply replace the x indices with one when they are in the word_indices 
+x(word_indices) = 1;
 
 % =========================================================================
     

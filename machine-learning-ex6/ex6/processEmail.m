@@ -55,7 +55,7 @@ fprintf('\n==== Processed Email ====\n\n');
 l = 0;
 
 while ~isempty(email_contents)
-
+    
     % Tokenize and also get rid of any punctuation
     [str, email_contents] = ...
        strtok(email_contents, ...
@@ -97,14 +97,14 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-
-
-
-
-
-
-
-
+    % Check if the string is in the vocabList and than add it to the word_indices
+    for i = 1:length(vocabList)
+      if strcmp(str, vocabList{i})
+        word_indices = [word_indices; i];
+        break
+      end
+    end
+    
 
     % =============================================================
 
