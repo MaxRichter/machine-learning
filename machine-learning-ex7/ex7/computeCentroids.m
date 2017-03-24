@@ -26,7 +26,21 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+% X = 300x2
+% idx = 300x1
+% centroids = 3x2
+% K = 1x1 = 3
+% n = 1x1 = 2
+% m = 1x1 = 300
 
+% Loop over centroids
+for i = 1:K
+  % For every K, match the idx with the coordinates from X
+  X_i = X(idx == i, :); % nx2 (x,y coordinates)
+  % Update the corresponding centroid using octave mean function
+  % size(mean(X_i)) = 1x2 so that it fits to centroids(i, :) 1x2
+  centroids(i, :) = mean(X_i);
+end
 
 
 

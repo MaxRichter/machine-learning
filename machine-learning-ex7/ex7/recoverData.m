@@ -21,7 +21,13 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               Notice that U(j, 1:K) is a row vector.
 %               
 
+% Z = 50x1
+% U = 2x2
+% K = 1
+% X_rec = 50x2
 
+U_reduce = U(:, 1:K); % 2x1
+X_rec = Z * U_reduce'; % 50x1 X 1x2 ==> 50x2 
 
 % =============================================================
 

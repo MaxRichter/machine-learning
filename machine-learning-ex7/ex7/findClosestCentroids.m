@@ -21,7 +21,28 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+% K = 3
+% idx = 300x1
+% X = 300x2
+% Centroids = 3x2 (33, 62, 85)
 
+% Loop over every training example
+for i = 1:size(X, 1)
+  %Define the minimum variables
+  min = inf;
+  % Loop over every K
+  for k = 1:K
+    % Calculate the difference
+    diff = X(i, :) - centroids(k, :); % 1x2
+    % Doing the squared error
+    d = diff * diff'; % 1x2 X 2x1 ==> 1x1
+    % If the difference is smaller than the examples difference, update it
+    if (d < min)
+      idx(i) = k;
+      min = d;
+    end
+  end
+end
 
 
 

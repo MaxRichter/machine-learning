@@ -18,8 +18,18 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% X = 50x2
+% K = 1
+% U = 2x2
+% Z = 50x1
 
+U_reduce = U(:, 1:K); % 2x1
+for i = 1: size(X, 1)
+  Z(i, :) = (U_reduce'*X(i, :)'); % 1x2 (U_reduce') X 2x1 (X(i, :)') ==> 1x1
+end
 
+%U_reduce = U(:, 1:K); % 2x1
+%Z = X * U_reduce; % 50x2 X 2x1 ==> 50x1
 
 % =============================================================
 

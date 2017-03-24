@@ -20,11 +20,11 @@ S = zeros(n);
 %       number of examples).
 %
 
-
-
-
-
-
+% X = 50x2
+% Calculate the covariance matrix
+Sigma = (X'*X)/m; % 2x50 X 50x2 ==> 2x2
+% Run svd to get the principal components
+[U, S, V] = svd(Sigma);
 
 % =========================================================================
 
